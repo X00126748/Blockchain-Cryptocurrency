@@ -1,5 +1,6 @@
 const Block = require('./block');
 
+
 //This is the test environment used to text our block class
 describe('Block', () => {
 
@@ -20,5 +21,19 @@ it('sets the `lastHash` to match the hash of the last block', () => {
     expect(block.lastHash).toEqual(lastBlock.hash);
  });
 
+
+
+ it('Generates a hash that matches our difficult', () => {
+     expect(block.hash.substring(0 , block.difficulty)).toEqual('0'.repeat(block.difficulty));
+     
+ });
+
+ it('lowers the difficulty for slowly mined blocks', () => {
+    expect(Block.adjustDifficulty(block, block.timestamp+360000)).toEqual(block.difficulty -1);
+ });
+
+ it('raises the difficulty for fastly mined blocks', () => {
+    expect(Block.adjustDifficulty(block, block.timestamp+1)).toEqual(block.difficulty+1);
+ });
 
 });
