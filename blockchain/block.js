@@ -1,4 +1,4 @@
-const SHA256 = require('crypto-js/sha256');
+const ChainUtil = require('../chain-util');
 const {DIFFICULTY, MINE_RATE} = require('../config');
 
 class Block 
@@ -53,7 +53,7 @@ static mineBlock(lastBlock, data)//gives class the ability to create new blocks 
 
 static hash(timestamp,lastHash,data,nonce, difficulty)//Function for creating hash using the previous blocks data
 {
- return SHA256(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
+ return ChainUtil.hash(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
 }
 
 static blockHash(block)
