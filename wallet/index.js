@@ -38,6 +38,13 @@ createTransaction(recipient, amount, transactionPool){
     return transaction;
   }
 
+
+  static blockchainWallet(){
+      const blockchainWallet = new Wallet();
+      blockchainWallet.address = 'blockchain-wallet';
+      return blockchainWallet;
+  }
+
 }
 
 module.exports = Wallet;
